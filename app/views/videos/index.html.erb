@@ -1,0 +1,31 @@
+<div class="container-fluid cursive">
+  <h1>Newest Soca Videos</h1>
+  <div class=" center row">
+    <% @videos.each do |video| %>
+      <div class="col-md-4" >
+          <div class="thumbnail" style="background-color:#f9f9f9">
+            <%= link_to image_tag(video.image_url), video%>
+            <div class="caption">
+              <h3 ><%= video.title %></h3>
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <%= video.get_upvotes.size %>
+                </div>
+                <div class="col-md-2">
+                  <span class="glyphicon glyphicon-thumbs-down"></span>
+                  <%= video.get_downvotes.size %>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+  <br>
+  <div class="content text-center" >
+    <%= will_paginate @videos, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
